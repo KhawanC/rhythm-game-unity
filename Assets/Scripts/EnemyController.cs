@@ -5,14 +5,14 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     private int direcao;
-    private int velocidade;
+    private float velocidade;
 
-    public int getVelocidade()
+    public float getVelocidade()
     {
         return this.velocidade;
     }
 
-    public void setVelocidade(int velocidade)
+    public void setVelocidade(float velocidade)
     {
         this.velocidade = velocidade;
     }
