@@ -9,12 +9,13 @@ public class EnemySpawner : MonoBehaviour
     private float timerSpawn = 0;
     private float intervaloSpawn = 3f;
     private float timerVelocicade = 0;
-    private float intervaloVelocidade = 3f;
+    private float intervaloVelocidade = 1.4f;
     private float timerReset = 0;
-    private float intervaloReset = 210f;
+    private float intervaloReset = 320f;
 
 
     [SerializeField] GameObject seta;
+    [SerializeField] AudioSource shieldSound;
 
     void Start()
     {
@@ -38,9 +39,9 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            if (intervaloSpawn >= 0.8f)
+            if (intervaloSpawn >= 0.65f)
             {
-                intervaloSpawn -= 0.03f;
+                intervaloSpawn -= 0.04f;
             }
             timerVelocicade = 0;
         }
@@ -51,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            intervaloSpawn = 2.3f;
+            intervaloSpawn = 2.5f;
             timerVelocicade = 0;
         }
     }
@@ -75,5 +76,10 @@ public class EnemySpawner : MonoBehaviour
             spawnX = -8;
         }
         Instantiate(seta, new Vector3(spawnX, spawnY, 0), Quaternion.Euler(new Vector3(0,0,0)));
+    }
+
+    public AudioSource getShieldSound()
+    {
+        return shieldSound;
     }
 }

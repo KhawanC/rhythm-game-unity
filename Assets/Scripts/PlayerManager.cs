@@ -28,8 +28,8 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         vidasTexto.text = player.getVidas().ToString();
-        pontosTexto.text = Math.Round(player.getPontos()).ToString() + "x";
-        streakText.text = player.getStreakPontuacao().ToString();
+        pontosTexto.text = Math.Round(player.getPontos()).ToString();
+        streakText.text = player.getStreakPontuacao().ToString() + "x";
         if (Input.GetKeyDown(KeyCode.W) == true)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));

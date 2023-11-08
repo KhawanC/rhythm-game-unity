@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     private Vector3 vectorDirection = Vector3.up;
     private PlayerManager playerManager;
     private EnemySpawner enemySpawner;
-    private float intervaloAleat = 0.4f;
+    private float intervaloAleat = 0.1f;
     private float timer = 0;
     private bool isImpulsoAtivado = false;
 
@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        enemy.setVelocidade(1.8f);
+        enemy.setVelocidade(1.7f);
         calcularDirecao();
     }
 
@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
             timer += Time.deltaTime;
         } else
         {
-            if (Random.Range(0, 100) > 85 && !isImpulsoAtivado)
+            if (Random.Range(0, 100) >= 85 && isImpulsoAtivado == false)
             {
                 enemy.setVelocidade(enemy.getVelocidade() + 3.5f);
             }
@@ -49,55 +49,55 @@ public class EnemyManager : MonoBehaviour
         float somadorVelocidade = 0;
         if (streak <= 30)
         {
-            somadorVelocidade += 0.8f;
+            somadorVelocidade += 0.9f;
         } else if (streak <= 60)
         {
-            somadorVelocidade += 1.1f;
+            somadorVelocidade += 1.2f;
         } else if (streak <= 90)
         {
-            somadorVelocidade += 1.4f;
+            somadorVelocidade += 1.5f;
         } else if (streak <= 160)
         {
-            somadorVelocidade += 1.8f;
+            somadorVelocidade += 1.9f;
         } else if (streak <= 180)
         {
-            somadorVelocidade += 2f;
+            somadorVelocidade += 2.1f;
         } else
         {
-            somadorVelocidade += 2.6f;
+            somadorVelocidade += 2.7f;
         }
 
-        if (pontuacao <= 800)
+        if (pontuacao <= 1200)
         {
-            somadorVelocidade += 0.7f;
-        } else if (pontuacao <= 1700)
+            somadorVelocidade += 0.9f;
+        } else if (pontuacao <= 4700)
         {
-            somadorVelocidade += 1.2f;
-        } else if (pontuacao <= 3000)
-        {
-            somadorVelocidade += 1.6f;
-        } else if (pontuacao <= 4500)
+            somadorVelocidade += 1.4f;
+        } else if (pontuacao <= 8000)
         {
             somadorVelocidade += 1.8f;
-        }
-        else if (pontuacao <= 6000)
+        } else if (pontuacao <= 12500)
         {
             somadorVelocidade += 2f;
         }
-        else if (pontuacao <= 8000)
+        else if (pontuacao <= 15000)
         {
-            somadorVelocidade += 2.3f;
+            somadorVelocidade += 2.2f;
         }
-        else if (pontuacao <= 12000)
+        else if (pontuacao <= 18000)
         {
             somadorVelocidade += 2.5f;
         }
-        else if (pontuacao <= 2000)
+        else if (pontuacao <= 24000)
         {
             somadorVelocidade += 2.9f;
+        }
+        else if (pontuacao <= 31000)
+        {
+            somadorVelocidade += 3.2f;
         } else
         {
-            somadorVelocidade += 3.3f;
+            somadorVelocidade += 4f;
         }
 
         return somadorVelocidade;
@@ -150,6 +150,7 @@ public class EnemyManager : MonoBehaviour
             destruirObjeto();
         } else if (collision.gameObject.tag == "escudo")
         {
+            enemySpawner.getShieldSound().Play();
             playerManager.aumentarStreak();
             playerManager.aumentarPontuacao();
             destruirObjeto();
